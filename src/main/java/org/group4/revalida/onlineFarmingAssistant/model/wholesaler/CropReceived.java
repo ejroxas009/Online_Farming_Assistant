@@ -16,4 +16,27 @@ public class CropReceived {
 	@OneToOne
 	private Advertisement advertisement;
 	private boolean isReceived;
+	
+	
+	
+	public Long getCropReceivedId() {
+		return cropReceivedId;
+	}
+	public void setCropReceivedId(Long cropReceivedId) {
+		this.cropReceivedId = cropReceivedId;
+	}
+	public Advertisement getAdvertisement() {
+		return advertisement;
+	}
+	public void setAdvertisement(Advertisement advertisement) {
+		this.advertisement = advertisement;
+	}
+	public boolean isReceived() {
+		return isReceived;
+	}
+	public void setReceived(boolean isReceived) {
+		this.isReceived = isReceived;
+	}
+	
+	
 }

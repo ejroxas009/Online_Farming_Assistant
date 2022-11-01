@@ -29,5 +29,48 @@ public class CropPayment {
 	private String orderIdRef;
 	private boolean isPaid;
 	//private String paymentDetails;
+	public Long getPaymentId() {
+		return paymentId;
+	}
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
+	}
+	public Advertisement getAdvertisement() {
+		return advertisement;
+	}
+	public void setAdvertisement(Advertisement advertisement) {
+		this.advertisement = advertisement;
+	}
+	public LocalDate getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(LocalDate paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	public String getOrderIdRef() {
+		return orderIdRef;
+	}
+	public void setOrderIdRef(String orderIdRef) {
+		this.orderIdRef = orderIdRef;
+	}
+	public boolean isPaid() {
+		return isPaid;
+	}
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+	
 	
 }

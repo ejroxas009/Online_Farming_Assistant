@@ -27,6 +27,9 @@ public class Advertisement {
 	private String cropImg;
 	private LocalDate postDate;
 	private boolean isActive;
+	
+	
+	
 	public Long getPostId() {
 		return postId;
 	}

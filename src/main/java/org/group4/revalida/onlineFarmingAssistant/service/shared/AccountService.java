@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.ws.rs.NotFoundException;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
-import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AccountRepo;
+import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService {
 	
-	public AccountService() {
-		
-	}
-
+	
 	@Autowired
 	 private AccountRepo accountRepo;
 	
