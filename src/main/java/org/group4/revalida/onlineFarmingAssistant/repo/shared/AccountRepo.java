@@ -1,4 +1,4 @@
-package org.group4.revalida.onlineFarmingAssistant.repo.wholesaler;
+package org.group4.revalida.onlineFarmingAssistant.repo.shared;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
