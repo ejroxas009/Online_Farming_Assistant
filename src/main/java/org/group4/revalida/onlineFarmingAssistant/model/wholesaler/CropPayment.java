@@ -13,17 +13,17 @@ import javax.persistence.Table;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
-@Table(name = "crop_table")
+@Table(name = "crop__payment_table")
 public class CropPayment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
-//	@OneToOne
-//	private Advertisement ads;
+	@OneToOne
+	private Advertisement advertisement;
 	private LocalDate paymentDate;
 	private String paymentMode;
-//	@OneToMany
-//	private Account account;
+	@OneToOne
+	private Account account;
 	//@OneToOne;
 	//private Bid bidId;
 	private String orderIdRef;
