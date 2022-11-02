@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +14,9 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
 	
-	@ManyToMany
+	
 	private String courseDescription;
 	
-	@OneToOne
 	private String courseSchedule;
 
 	public Long getCourseId() {

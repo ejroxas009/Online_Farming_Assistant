@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FarmingTipsService {
+	public FarmingTipsService() {
+		
+	}
 	
 	@Autowired
 	private FarmingTipsRepo farmingTipsRepo;

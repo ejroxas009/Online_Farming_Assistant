@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CropService {
+	public CropService() {
+		
+	}
 	@Autowired
 	private CropRepo cropRepo;
 	
