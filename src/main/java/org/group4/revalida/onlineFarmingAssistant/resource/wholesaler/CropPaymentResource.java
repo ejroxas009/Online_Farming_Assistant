@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropPayment;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomChangePaymentMode;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropPayment;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.CropPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,14 +41,23 @@ public class CropPaymentResource {
 		return Response.ok(cropPayment).build();
 	}
 	
+//	//Post
+//	@POST
+//	@Produces({MediaType.APPLICATION_JSON})
+//	@Consumes({MediaType.APPLICATION_JSON})
+//	public Response addCropPayment(CropPayment cropPayment) {
+//		service.createCropPayment(cropPayment);
+//		return Response.ok("Crop Payment was successfully created").build();
+//	}
+	
 	//Post
-	@POST
-	@Produces({MediaType.APPLICATION_JSON})
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response addCropPayment(CropPayment cropPayment) {
-		service.createCropPayment(cropPayment);
-		return Response.ok("Crop Payment was successfully created").build();
-	}
+		@POST
+		@Produces({MediaType.APPLICATION_JSON})
+		@Consumes({MediaType.APPLICATION_JSON})
+		public Response addCropPayment(CustomCropPayment customCropPayment) {
+			service.createCropPayment(customCropPayment);
+			return Response.ok("Crop Payment was successfully created").build();
+		}
 	
 	//Toggle isPaid 
 	
@@ -63,8 +74,8 @@ public class CropPaymentResource {
 	@Path("/change-payment-mode/{cropPaymentId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response changePaymentMode(CropPayment cropPayment, @PathParam("cropPaymentId") Long id) {
-		service.changePaymentMode(cropPayment, id);
+	public Response changePaymentMode(CustomChangePaymentMode changePaymentMode, @PathParam("cropPaymentId") Long id) {
+		service.changePaymentMode(changePaymentMode, id);
 		return Response.ok("Successfully changed the payment mode").build();
 	}
 }

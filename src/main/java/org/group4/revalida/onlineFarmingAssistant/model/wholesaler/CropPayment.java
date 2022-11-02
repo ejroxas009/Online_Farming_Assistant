@@ -1,6 +1,7 @@
 package org.group4.revalida.onlineFarmingAssistant.model.wholesaler;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class CropPayment {
 	private Long paymentId;
 	@OneToOne
 	private Advertisement advertisement;
-	private LocalDate paymentDate;
+	private LocalDateTime paymentDate;
 	private String paymentMode;
 	@OneToOne
 	private Account account;
@@ -29,6 +30,9 @@ public class CropPayment {
 	private String orderIdRef;
 	private boolean isPaid;
 	//private String paymentDetails;
+	
+	
+	
 	public Long getPaymentId() {
 		return paymentId;
 	}
@@ -41,10 +45,10 @@ public class CropPayment {
 	public void setAdvertisement(Advertisement advertisement) {
 		this.advertisement = advertisement;
 	}
-	public LocalDate getPaymentDate() {
+	public LocalDateTime getPaymentDate() {
 		return paymentDate;
 	}
-	public void setPaymentDate(LocalDate paymentDate) {
+	public void setPaymentDate(LocalDateTime paymentDate) {
 		this.paymentDate = paymentDate;
 	}
 	public String getPaymentMode() {
