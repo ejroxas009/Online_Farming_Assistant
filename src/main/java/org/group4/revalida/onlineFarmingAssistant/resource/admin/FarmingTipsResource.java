@@ -1,6 +1,7 @@
 package org.group4.revalida.onlineFarmingAssistant.resource.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -31,9 +32,18 @@ public class FarmingTipsResource {
 		return Response.ok(fTipsList).build();
 	}
 	
+	@GET
+	@Path("/{farmingTipsId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response getFarmingTipsById(@PathParam("farmingTipsId") Long id) {
+		Optional<FarmingTips> fTips = fTipsService.getFarmingTipsById(id);
+		return Response.ok(fTips).build();
+	}
+	
+	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
-	@Consumes({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON}) 
 	public Response addTips (FarmingTips fTips) {
 		fTipsService.createFarmingTips(fTips);
 		return Response.ok("Successfully Created").build();

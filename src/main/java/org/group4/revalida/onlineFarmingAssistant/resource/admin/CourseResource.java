@@ -1,11 +1,13 @@
 package org.group4.revalida.onlineFarmingAssistant.resource.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -28,6 +30,14 @@ public class CourseResource {
 	public Response getCourse() {
 		List<Course> courseList = courseService.getCourse();
 		return Response.ok(courseList).build();
+	}
+	
+	@GET
+	@Path("/{courseId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response getCourseById(@PathParam("courseId") Long id) {
+		Optional<Course> course = courseService.getCourseById(id);
+		return Response.ok(course).build();
 	}
 	
 	@POST

@@ -27,7 +27,7 @@ public class FarmingTipsService {
 		return farmingTipsRepo.findById(id);
 	}
 	
-	public FarmingTips createFarmingTips (FarmingTips farmingtips) {
+	public FarmingTips createFarmingTips (FarmingTips farmingtips) {;
 		return farmingTipsRepo.save(farmingtips);
 	}
 	
