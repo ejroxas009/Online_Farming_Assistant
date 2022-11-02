@@ -1,11 +1,13 @@
 package org.group4.revalida.onlineFarmingAssistant.model.farmer;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
@@ -17,14 +19,35 @@ public class Bid {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bidId;
+	@ManyToOne
 	private Advertisement postId;
+//	private Long postId;
+	
 	private double bidPrice;
 	private String bidMsg;
-	private LocalDate bidDate;
+	private LocalDateTime bidDate;
 	private boolean isActive;
 	private boolean isPaid;
 	private boolean isApproved;
-	private LocalDate dateApproved;
+	private LocalDateTime dateApproved;
+	
+	public Bid() {
+		
+	}
+	
+	public Bid(Long bidId, Advertisement postId, double bidPrice, String bidMsg, LocalDateTime bidDate, boolean isActive,
+			boolean isPaid, boolean isApproved, LocalDateTime dateApproved) {
+		super();
+		this.bidId = bidId;
+		this.postId = postId;
+		this.bidPrice = bidPrice;
+		this.bidMsg = bidMsg;
+		this.bidDate = bidDate;
+		this.isActive = isActive;
+		this.isPaid = isPaid;
+		this.isApproved = isApproved;
+		this.dateApproved = dateApproved;
+	}
 	
 	public Long getBidId() {
 		return bidId;
@@ -58,11 +81,11 @@ public class Bid {
 		this.bidMsg = bidMsg;
 	}
 
-	public LocalDate getBidDate() {
+	public LocalDateTime getBidDate() {
 		return bidDate;
 	}
 
-	public void setBidDate(LocalDate bidDate) {
+	public void setBidDate(LocalDateTime bidDate) {
 		this.bidDate = bidDate;
 	}
 
@@ -90,29 +113,11 @@ public class Bid {
 		this.isApproved = isApproved;
 	}
 
-	public LocalDate getDateApproved() {
+	public LocalDateTime getDateApproved() {
 		return dateApproved;
 	}
 
-	public void setDateApproved(LocalDate dateApproved) {
-		this.dateApproved = dateApproved;
-	}
-
-	public Bid() {
-		
-	}
-	
-	public Bid(Long bidId, Advertisement postId, double bidPrice, String bidMsg, LocalDate bidDate, boolean isActive,
-			boolean isPaid, boolean isApproved, LocalDate dateApproved) {
-		super();
-		this.bidId = bidId;
-		this.postId = postId;
-		this.bidPrice = bidPrice;
-		this.bidMsg = bidMsg;
-		this.bidDate = bidDate;
-		this.isActive = isActive;
-		this.isPaid = isPaid;
-		this.isApproved = isApproved;
+	public void setDateApproved(LocalDateTime dateApproved) {
 		this.dateApproved = dateApproved;
 	}
 	
