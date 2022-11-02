@@ -3,23 +3,14 @@ package org.group4.revalida.onlineFarmingAssistant.model.wholesaler;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
-@Entity
-@Table(name = "advertisement_table")
-public class Advertisement {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long postId;
-	@ManyToOne
-	private Account account;
+public class CustomAdvertisement {
+	
+
+	private Long accountId;
 //	@OneToOne
 //	private Crop crop;
 	private String adsDescription;
@@ -31,17 +22,11 @@ public class Advertisement {
 	
 	
 	
-	public Long getPostId() {
-		return postId;
+	public Long getAccountId() {
+		return accountId;
 	}
-	public void setPostId(Long postId) {
-		this.postId = postId;
-	}
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 	public String getAdsDescription() {
 		return adsDescription;
@@ -70,8 +55,8 @@ public class Advertisement {
 	public LocalDateTime getPostDate() {
 		return postDate;
 	}
-	public void setPostDate(LocalDateTime localDateTime) {
-		this.postDate = localDateTime;
+	public void setPostDate(LocalDateTime postDate) {
+		this.postDate = postDate;
 	}
 	public boolean isActive() {
 		return isActive;
@@ -80,5 +65,5 @@ public class Advertisement {
 		this.isActive = isActive;
 	}
 	
-	
+
 }

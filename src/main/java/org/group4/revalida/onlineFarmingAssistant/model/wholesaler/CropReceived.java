@@ -1,5 +1,7 @@
 package org.group4.revalida.onlineFarmingAssistant.model.wholesaler;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ public class CropReceived {
 	private Long cropReceivedId;
 	@OneToOne
 	private Advertisement advertisement;
+	private LocalDateTime receivedTime;
 	private boolean isReceived;
 	
 	
@@ -36,6 +39,12 @@ public class CropReceived {
 	}
 	public void setReceived(boolean isReceived) {
 		this.isReceived = isReceived;
+	}
+	public LocalDateTime getReceivedTime() {
+		return receivedTime;
+	}
+	public void setReceivedTime(LocalDateTime receivedTime) {
+		this.receivedTime = receivedTime;
 	}
 	
 	

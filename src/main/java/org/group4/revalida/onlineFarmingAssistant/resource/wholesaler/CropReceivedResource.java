@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.CropReceivedService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,8 +42,8 @@ public class CropReceivedResource {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response addCropReceived(CropReceived cropReceived) {
-		service.createCropReceived(cropReceived);
+	public Response addCropReceived(CustomCropReceived customCropReceived) {
+		service.createCropReceived(customCropReceived);
 		return Response.ok("CropReceived was successfully created").build();
 	}
 	

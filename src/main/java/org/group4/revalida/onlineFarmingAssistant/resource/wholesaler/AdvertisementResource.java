@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomAdvertisement;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,12 +43,21 @@ public class AdvertisementResource {
 		return Response.ok(ads).build();
 	}
 	
+//	@POST
+//	@Produces({MediaType.APPLICATION_JSON})
+//	@Consumes({MediaType.APPLICATION_JSON})
+//	public Response addAds(Advertisement ads) {
+//		
+//		Advertisement advertisement = adsService.createAdvertisement(ads);
+//		return Response.ok("Successfully added an ads").build();
+//	}
+	
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response addAds(Advertisement ads) {
+	public Response addAds(CustomAdvertisement customAds) {
 		
-		Advertisement advertisement = adsService.createAdvertisement(ads);
+		Advertisement advertisement = adsService.createAdvertisement(customAds);
 		return Response.ok("Successfully added an ads").build();
 	}
 	

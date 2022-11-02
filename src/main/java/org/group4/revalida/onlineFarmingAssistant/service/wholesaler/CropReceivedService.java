@@ -1,11 +1,15 @@
 package org.group4.revalida.onlineFarmingAssistant.service.wholesaler;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import javax.ws.rs.NotFoundException;
 
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
+import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AdvertisementRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.CropReceivedRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,9 @@ public class CropReceivedService {
 	@Autowired
 	private CropReceivedRepo cropReceivedRepo;
 	
+	@Autowired
+	private AdvertisementRepo adsRepo;
+	
 	public List<CropReceived> getCropReceived(){
 		return cropReceivedRepo.findAll();
 	}
@@ -24,7 +31,12 @@ public class CropReceivedService {
 		return cropReceivedRepo.findById(id);
 	}
 	
-	public CropReceived createCropReceived(CropReceived cropReceived) {
+	public CropReceived createCropReceived(CustomCropReceived customCropReceived) {
+		Advertisement ads = adsRepo.findById(customCropReceived.getAdvertisementId()).orElseThrow(NotFoundException ::new);
+		CropReceived cropReceived = new CropReceived();
+		cropReceived.setAdvertisement(ads);
+		cropReceived.setReceivedTime(null);
+		cropReceived.setReceived(false);
 		return cropReceivedRepo.save(cropReceived);
 	}
 	
@@ -32,7 +44,7 @@ public class CropReceivedService {
 	//To toggle isReceived
 	public CropReceived receiveCrop( Long id) {
 		CropReceived cropInDb = cropReceivedRepo.findById(id).orElseThrow(NotFoundException::new);
-		
+		cropInDb.setReceivedTime(LocalDateTime.now());
 		cropInDb.setReceived(true);
 		return cropReceivedRepo.save(cropInDb);
 	}
