@@ -4,9 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
+
+//import org.group4.revalida.onlineFarmingAssistant.model.shared.account;
 
 @Entity
 @Table(name="complaints_table")
@@ -15,7 +19,10 @@ public class Complaints {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long complaintId;
+	@ManyToOne
 	private Account account;
+	
+//	private Long account;
 	private String complaintPost;
 	private String complaintImg;
 	private boolean isRead;
@@ -41,11 +48,11 @@ public class Complaints {
 		this.complaintId = complaintId;
 	}
 
-	public Account getAccount() {
+	public Account getaccount() {
 		return account;
 	}
 
-	public void setAccount(Account account) {
+	public void setaccount(Account account) {
 		this.account = account;
 	}
 

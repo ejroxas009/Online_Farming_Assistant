@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
@@ -17,12 +18,22 @@ public class CourseEnroll {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseEnrollId;
-	private Account accountId;
+//	@OneToMany
+//	private Account account;
+	
+	private Long accountId;
 //	private Course courseId;
 	private LocalDate enrollDate;
 	
 	public CourseEnroll() {
 		
+	}
+	
+	public CourseEnroll(Long courseEnrollId, Long accountId, LocalDate enrollDate) {
+	super();
+	this.courseEnrollId = courseEnrollId;
+	this.accountId = accountId;
+	this.enrollDate = enrollDate;
 	}
 	
 	public Long getCourseEnrollId() {
@@ -33,28 +44,29 @@ public class CourseEnroll {
 		this.courseEnrollId = courseEnrollId;
 	}
 
-	public Account getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(Account accountId) {
-		this.accountId = accountId;
-	}
+//	public Account getaccount() {
+//		return account;
+//	}
+//
+//	public void setaccount(Account account) {
+//		this.account = account;
+//	}
 
 	public LocalDate getEnrollDate() {
 		return enrollDate;
 	}
 
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
 	public void setEnrollDate(LocalDate enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-
-	public CourseEnroll(Long courseEnrollId, Account accountId, LocalDate enrollDate) {
-	super();
-	this.courseEnrollId = courseEnrollId;
-	this.accountId = accountId;
-	this.enrollDate = enrollDate;
-}
 	
 	
 }
