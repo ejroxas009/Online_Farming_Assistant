@@ -6,9 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.admin.Course;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
@@ -18,22 +19,25 @@ public class CourseEnroll {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseEnrollId;
-//	@OneToMany
-//	private Account account;
+	@ManyToOne
+	private Account account;
 	
-	private Long accountId;
-//	private Course courseId;
+//	private Long accountId;
+	
+	@ManyToOne
+	private Course courseId;
 	private LocalDate enrollDate;
-	
+
 	public CourseEnroll() {
 		
 	}
 	
-	public CourseEnroll(Long courseEnrollId, Long accountId, LocalDate enrollDate) {
-	super();
-	this.courseEnrollId = courseEnrollId;
-	this.accountId = accountId;
-	this.enrollDate = enrollDate;
+	public CourseEnroll(Long courseEnrollId, Account account, Course courseId, LocalDate enrollDate) {
+		super();
+		this.courseEnrollId = courseEnrollId;
+		this.account = account;
+		this.courseId = courseId;
+		this.enrollDate = enrollDate;
 	}
 	
 	public Long getCourseEnrollId() {
@@ -44,29 +48,37 @@ public class CourseEnroll {
 		this.courseEnrollId = courseEnrollId;
 	}
 
-//	public Account getaccount() {
-//		return account;
-//	}
-//
-//	public void setaccount(Account account) {
-//		this.account = account;
-//	}
+	public Account getaccount() {
+		return account;
+	}
+
+	public void setaccount(Account account) {
+		this.account = account;
+	}
+	
+	public Course getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Course courseId) {
+		this.courseId = courseId;
+	}
 
 	public LocalDate getEnrollDate() {
 		return enrollDate;
 	}
-
-	public Long getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
-
+	
 	public void setEnrollDate(LocalDate enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
+//	public Long getAccountId() {
+//		return accountId;
+//	}
+//
+//	public void setAccountId(Long accountId) {
+//		this.accountId = accountId;
+//	}
 	
 	
 }
