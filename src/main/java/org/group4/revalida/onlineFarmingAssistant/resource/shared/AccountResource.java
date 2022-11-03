@@ -60,4 +60,15 @@ public AccountResource(AccountService accountService) {
 		accountService.editAccount(account, id);
 		return Response.ok("Successfully edited an account").build();
 	}
+	
+
+	@PUT
+	@Path("/set-active/{accountId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response toggleActive( @PathParam("accountId") Long id) {
+		accountService.toggleActive(id);
+		return Response.ok("Successfully changed isActive").build();
+	}
+	
 }

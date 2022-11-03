@@ -1,15 +1,24 @@
 package org.group4.revalida.onlineFarmingAssistant.model.wholesaler;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.admin.Crop;
+import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
@@ -18,10 +27,15 @@ public class Advertisement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long postId;
-	@ManyToOne
+	@OneToOne
 	private Account account;
-//	@OneToOne
-//	private Crop crop;
+	@OneToOne
+	private Crop crop;
+	
+	
+	@OneToMany(targetEntity = Bid.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "ads_fk", referencedColumnName = "postId")
+	private List<Bid> bid;
 	private String adsDescription;
 	private double cropQuantity;
 	private double initialPrice;
@@ -30,6 +44,19 @@ public class Advertisement {
 	private boolean isActive;
 	
 	
+	
+	public Crop getCrop() {
+		return crop;
+	}
+	public void setCrop(Crop crop) {
+		this.crop = crop;
+	}
+	public List<Bid> getBid() {
+		return bid;
+	}
+	public void setBid(List<Bid> bid) {
+		this.bid = bid;
+	}
 	
 	public Long getPostId() {
 		return postId;

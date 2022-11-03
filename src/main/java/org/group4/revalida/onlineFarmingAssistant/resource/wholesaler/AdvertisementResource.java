@@ -60,15 +60,23 @@ public class AdvertisementResource {
 		Advertisement advertisement = adsService.createAdvertisement(customAds);
 		return Response.ok("Successfully added an ads").build();
 	}
-	
+	//-----Edit ---------
 	@PUT
 	@Path("/{postId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	public Response editAds(Advertisement ads, @PathParam("postId") Long id) {
 		adsService.editAdvertisement(ads, id);
-		return Response.ok("Sucessfully created an ads").build();
+		return Response.ok("Sucessfully edited an ads").build();
 	}
 	
-	
+	@PUT
+	@Path("/set-active/{postId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response toggleActive(@PathParam("postId") Long id) {
+		adsService.toggleActive(id);
+		return Response.ok("Successfully toggled active").build();
+	}
+		
 }

@@ -30,6 +30,7 @@ public class CropPaymentResource {
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getCropPayment() {
 		List<CropPayment> cropPayment = service.getCropPayment();
+		System.out.println("Testing " + cropPayment);
 		return Response.ok(cropPayment).build();
 	}
 	

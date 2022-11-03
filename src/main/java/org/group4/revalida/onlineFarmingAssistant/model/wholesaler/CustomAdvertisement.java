@@ -11,8 +11,8 @@ public class CustomAdvertisement {
 	
 
 	private Long accountId;
-//	@OneToOne
-//	private Crop crop;
+	private Long cropId;
+	private Long bidId;
 	private String adsDescription;
 	private double cropQuantity;
 	private double initialPrice;
@@ -22,6 +22,18 @@ public class CustomAdvertisement {
 	
 	
 	
+	public Long getCropId() {
+		return cropId;
+	}
+	public void setCropId(Long cropId) {
+		this.cropId = cropId;
+	}
+	public Long getBidId() {
+		return bidId;
+	}
+	public void setBidId(Long bidId) {
+		this.bidId = bidId;
+	}
 	public Long getAccountId() {
 		return accountId;
 	}

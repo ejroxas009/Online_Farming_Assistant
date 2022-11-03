@@ -46,4 +46,10 @@ public class AccountService {
 		
 		return accountRepo.save(accountInDb);
 	}
+	
+	public Account toggleActive(Long id) {
+		Account accountInDb = accountRepo.findById(id).orElseThrow(NotFoundException :: new);
+		accountInDb.setActive(!accountInDb.isActive());
+		return accountRepo.save(accountInDb);
+	}
 }
