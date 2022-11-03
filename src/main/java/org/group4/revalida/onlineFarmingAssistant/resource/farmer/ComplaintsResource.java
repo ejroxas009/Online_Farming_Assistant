@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -60,4 +61,5 @@ public class ComplaintsResource {
 		complaintsService.complaintStatus(id);
 		return Response.ok("Complaint Status: Read").build();
 	}
+	
 }

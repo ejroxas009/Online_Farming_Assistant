@@ -19,34 +19,35 @@ public class CourseEnroll {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long courseEnrollId;
+	private Long enrollId;
 	@OneToOne
 	private Account account;
 	
 //	private Long accountId;
 	
 	@OneToOne
-	private Course courseId;
+	private Course course;
+	
 	private LocalDate enrollDate;
 
 	public CourseEnroll() {
 		
 	}
 	
-	public CourseEnroll(Long courseEnrollId, Account account, Course courseId, LocalDate enrollDate) {
+	public CourseEnroll(Long courseEnrollId, Account account, Course course, LocalDate enrollDate) {
 		super();
-		this.courseEnrollId = courseEnrollId;
+		this.enrollId = courseEnrollId;
 		this.account = account;
-		this.courseId = courseId;
+		this.course = course;
 		this.enrollDate = enrollDate;
 	}
 	
 	public Long getCourseEnrollId() {
-		return courseEnrollId;
+		return enrollId;
 	}
 
 	public void setCourseEnrollId(Long courseEnrollId) {
-		this.courseEnrollId = courseEnrollId;
+		this.enrollId = courseEnrollId;
 	}
 
 	public Account getaccount() {
@@ -57,12 +58,12 @@ public class CourseEnroll {
 		this.account = account;
 	}
 	
-	public Course getCourseId() {
-		return courseId;
+	public Course getcourse() {
+		return course;
 	}
 
-	public void setCourseId(Course courseId) {
-		this.courseId = courseId;
+	public void setcourse(Course course) {
+		this.course = course;
 	}
 
 	public LocalDate getEnrollDate() {

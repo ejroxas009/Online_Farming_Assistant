@@ -9,7 +9,6 @@ import javax.ws.rs.NotFoundException;
 import org.group4.revalida.onlineFarmingAssistant.model.farmer.Complaints;
 import org.group4.revalida.onlineFarmingAssistant.model.farmer.CustomComplaints;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
-import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 import org.group4.revalida.onlineFarmingAssistant.repo.farmer.ComplaintsRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
