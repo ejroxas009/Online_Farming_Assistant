@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
-@Table(name = "crop__payment_table")
+@Table(name = "crop_payment_table")
 public class CropPayment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
