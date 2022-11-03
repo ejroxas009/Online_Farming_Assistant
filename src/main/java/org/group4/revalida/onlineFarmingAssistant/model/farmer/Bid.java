@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 
 @Entity
@@ -18,9 +19,9 @@ public class Bid {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bidId;
+	
 	@OneToOne
-	private Advertisement postId;
-//	private Long postId;
+	private Account account;
 	
 	private double bidPrice;
 	private String bidMsg;
@@ -34,20 +35,6 @@ public class Bid {
 		
 	}
 	
-	public Bid(Long bidId, Advertisement postId, double bidPrice, String bidMsg, LocalDateTime bidDate, boolean isActive,
-			boolean isPaid, boolean isApproved, LocalDateTime dateApproved) {
-		super();
-		this.bidId = bidId;
-		this.postId = postId;
-		this.bidPrice = bidPrice;
-		this.bidMsg = bidMsg;
-		this.bidDate = bidDate;
-		this.isActive = isActive;
-		this.isPaid = isPaid;
-		this.isApproved = isApproved;
-		this.dateApproved = dateApproved;
-	}
-	
 	public Long getBidId() {
 		return bidId;
 	}
@@ -56,12 +43,12 @@ public class Bid {
 		this.bidId = bidId;
 	}
 
-	public Advertisement getPostId() {
-		return postId;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setPostId(Advertisement postId) {
-		this.postId = postId;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public double getBidPrice() {
