@@ -23,14 +23,17 @@ public class CropPaymentService {
 
 	@Autowired
 	private CropPaymentRepo cropPaymentRepo;
+	
+	
 	@Autowired 
 	private AccountRepo accountRepo;
 	@Autowired
 	private AdvertisementRepo adsRepo;
 	
 	public List<CropPayment> getCropPayment() {
-		return  cropPaymentRepo.findAll();
+		return cropPaymentRepo.findAll();
 	}
+	
 	
 	public Optional<CropPayment> getCropPaymentById(Long id) {
 		
