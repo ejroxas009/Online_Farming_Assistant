@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,7 +20,7 @@ public class Complaints {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long complaintId;
-	@ManyToOne
+	@OneToOne
 	private Account account;
 	
 //	private Long account;
@@ -48,11 +49,11 @@ public class Complaints {
 		this.complaintId = complaintId;
 	}
 
-	public Account getaccount() {
+	public Account getAccount() {
 		return account;
 	}
 
-	public void setaccount(Account account) {
+	public void setAccount(Account account) {
 		this.account = account;
 	}
 

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.admin.Course;
@@ -19,12 +20,12 @@ public class CourseEnroll {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseEnrollId;
-	@ManyToOne
+	@OneToOne
 	private Account account;
 	
 //	private Long accountId;
 	
-	@ManyToOne
+	@OneToOne
 	private Course courseId;
 	private LocalDate enrollDate;
 
