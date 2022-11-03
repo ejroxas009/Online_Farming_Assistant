@@ -34,7 +34,10 @@ public class CourseService {
 	public Course editCourse(Course course, Long Id) {
 		Course courseInDb  = courseRepo.findById(Id).orElseThrow(NotFoundException::new);
 		courseInDb.setCourseDescription(course.getCourseDescription());
-		courseInDb.setCourseSchedule(course.getCourseSchedule());
+		courseInDb.setStartDate(course.getStartDate());
+		courseInDb.setEndDate(course.getEndDate());
+		courseInDb.setStartTime(course.getStartTime());
+		courseInDb.setEndTime(course.getEndTime());
 		
 		return courseRepo.save(courseInDb);
 	}

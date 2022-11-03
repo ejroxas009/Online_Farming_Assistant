@@ -14,10 +14,13 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
 	
-	
 	private String courseDescription;
 	
-	private String courseSchedule;
+	//Course Schedule
+	private String startTime;
+	private String endTime;
+	private String startDate;
+	private String endDate;
 
 	public Long getCourseId() {
 		return courseId;
@@ -35,13 +38,35 @@ public class Course {
 		this.courseDescription = courseDescription;
 	}
 
-	public String getCourseSchedule() {
-		return courseSchedule;
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setCourseSchedule(String courseSchedule) {
-		this.courseSchedule = courseSchedule;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
-	
-	
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 }
