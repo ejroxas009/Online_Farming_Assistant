@@ -31,18 +31,15 @@ public class Advertisement {
 	private Account account;
 	@OneToOne
 	private Crop crop;
-	
-	
-	@OneToMany(targetEntity = Bid.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "ads_fk", referencedColumnName = "postId")
-	private List<Bid> bid;
 	private String adsDescription;
 	private double cropQuantity;
 	private double initialPrice;
 	private String cropImg;
 	private LocalDateTime postDate;
 	private boolean isActive;
-	
+	@OneToMany(targetEntity = Bid.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "ads_fk", referencedColumnName = "postId")
+	private List<Bid> bid;
 	
 	
 	public Crop getCrop() {
