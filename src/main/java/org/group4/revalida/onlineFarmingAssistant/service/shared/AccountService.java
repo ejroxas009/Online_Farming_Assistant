@@ -65,8 +65,11 @@ public class AccountService implements UserDetailsService{
 	
 	public Account createAccount(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		account.setActive(false);
 		return accountRepo.save(account);
 	}
+	
+	
 	
 	public Account editAccount(Account account, Long Id) {
 		
