@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Path("/account")
 public class AccountResource {
@@ -32,7 +33,11 @@ public AccountResource(AccountService accountService) {
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getAccount(){
 		List<Account> accountList = accountService.getAllAccount();
-		return Response.ok(accountList).build();
+		return Response.ok(accountList)
+						.header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+						.allow("OPTIONS")
+						.build();
 	}
 	
 	@GET
@@ -44,12 +49,17 @@ public AccountResource(AccountService accountService) {
 	}
 	
 	@POST
+	
 	@Path("/register")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	public Response addAccount(Account account) {
 		accountService.createAccount(account);
-		return Response.ok("Successfully created an account").build();
+		return Response
+				.ok("Successfully created an account")
+				.entity(account)
+				.header("Access-Control-Allow-Origin", "*")
+				.build();
 	}
 	
 	@PUT
