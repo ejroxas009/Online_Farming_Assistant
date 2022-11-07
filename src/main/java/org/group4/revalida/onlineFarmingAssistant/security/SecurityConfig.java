@@ -1,7 +1,7 @@
 package org.group4.revalida.onlineFarmingAssistant.security;
 
-
 import org.group4.revalida.onlineFarmingAssistant.filter.CustomAuthenticationFilter;
+
 import org.group4.revalida.onlineFarmingAssistant.filter.CustomAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

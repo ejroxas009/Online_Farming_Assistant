@@ -79,6 +79,7 @@ public class AccountService implements UserDetailsService{
 		accountInDb.setAddressLine2(account.getAddressLine2());
 		accountInDb.setCity(account.getCity());
 		accountInDb.setProvince(account.getZipCode());
+		accountInDb.setCountry(account.getCountry());
 		accountInDb.setPhoneNumber(account.getPhoneNumber());
 		accountInDb.setProfileImg(account.getProfileImg());
 		

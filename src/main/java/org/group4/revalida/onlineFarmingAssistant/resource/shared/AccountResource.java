@@ -53,7 +53,7 @@ public AccountResource(AccountService accountService) {
 	}
 	
 	@PUT
-	@Path("edit/{accountId}")
+	@Path("/edit/{accountId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	public Response editAccount(Account account, @PathParam("accountId") Long id) {
