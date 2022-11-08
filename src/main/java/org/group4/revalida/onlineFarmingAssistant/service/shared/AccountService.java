@@ -1,17 +1,23 @@
 package org.group4.revalida.onlineFarmingAssistant.service.shared;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
 
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +26,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 
 import lombok.RequiredArgsConstructor;
 
@@ -95,6 +104,25 @@ public class AccountService implements UserDetailsService{
 		return accountRepo.save(accountInDb);
 	}
 
+	
+	public Map<String, String> login(LoginCredentials credentials) {
+		Account currentAccount = accountRepo.findByUsername(credentials.getUsername());
+		Map<String, String> tokens = new HashMap<>();
+		if(currentAccount != null && passwordEncoder.matches(credentials.getPassword(), currentAccount.getPassword())) {
+			Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+			String access_token = JWT.create()
+					//.withSubject(currentAccount.getUsername())
+					.withExpiresAt(new Date(System.currentTimeMillis()+ 10*60*1000))
+					.withClaim("username", currentAccount.getUsername())
+					.withClaim("role", currentAccount.getRole())
+					.sign(algorithm);
+			
+			tokens.put("access_token", access_token);
+			return tokens;
+		}
+		tokens.put("access_token", "");
+		return tokens;
+	}
 	
 	
 }
