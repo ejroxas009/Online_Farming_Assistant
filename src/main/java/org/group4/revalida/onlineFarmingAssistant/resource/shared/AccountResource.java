@@ -1,6 +1,7 @@
 package org.group4.revalida.onlineFarmingAssistant.resource.shared;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
 import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,7 +51,6 @@ public AccountResource(AccountService accountService) {
 	}
 	
 	@POST
-	
 	@Path("/register")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
@@ -60,6 +61,20 @@ public AccountResource(AccountService accountService) {
 				.entity(account)
 				.header("Access-Control-Allow-Origin", "*")
 				.build();
+	}
+	
+	@POST
+	@Path("/login")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response login(LoginCredentials credentials) {
+		 Map<String, String> tokens = accountService.login(credentials);
+		if(tokens.get("access_token") != "") {
+			return Response.ok(tokens).build();
+		}
+		
+		return Response.status(403, "Incorrect username or password").build();
+		
 	}
 	
 	@PUT
