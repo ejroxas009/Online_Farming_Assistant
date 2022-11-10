@@ -113,6 +113,7 @@ public class AccountService implements UserDetailsService{
 			String access_token = JWT.create()
 					//.withSubject(currentAccount.getUsername())
 					.withExpiresAt(new Date(System.currentTimeMillis()+ 10*60*1000))
+					.withClaim("id", currentAccount.getAccountId())
 					.withClaim("username", currentAccount.getUsername())
 					.withClaim("role", currentAccount.getRole())
 					.sign(algorithm);
