@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.ChangePassword;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
 import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +95,28 @@ public AccountResource(AccountService accountService) {
 	public Response toggleActive( @PathParam("accountId") Long id) {
 		accountService.toggleActive(id);
 		return Response.ok("Successfully changed isActive").build();
+	}
+	
+	@PUT
+	@Path("/change-profileImg/{accountId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response changeProfileImage(Long id , String image) {
+		accountService.changeProfileImage(id, image);
+		return Response.ok().build();
+	}
+	
+	@PUT
+	@Path("/change-password/{accountId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response changePassword(Long id , ChangePassword password) {
+		String result = accountService.changePassword(id, password);
+		if(result == "success") {
+			return Response.ok("Password is successfully changed").build();
+		}
+		return Response.status(403, "Incorrect old password").build();
+		
 	}
 	
 }
