@@ -15,6 +15,7 @@ import javax.ws.rs.NotFoundException;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ChangePassword;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.ProfileImage;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -124,9 +125,9 @@ public class AccountService implements UserDetailsService{
 		return tokens;
 	}
 	
-	public Account changeProfileImage(Long id, String image) {
+	public Account changeProfileImage(Long id, ProfileImage image) {
 		Account accountInDb = accountRepo.findById(id).orElseThrow(NotFoundException::new);
-		accountInDb.setProfileImg(image);
+		accountInDb.setProfileImg(image.getProfileImage());
 		return accountRepo.save(accountInDb);
 	}
 	
@@ -136,10 +137,12 @@ public class AccountService implements UserDetailsService{
 		if(passwordEncoder.matches(password.getOldPassword(), accountInDb.getPassword())) {
 			accountInDb.setPassword(passwordEncoder.encode(password.getNewPassword()));
 			accountRepo.save(accountInDb);
+			
 			return "success";
 		}
+		
 		return "failed";
-			
+		 
 		
 	}
 }

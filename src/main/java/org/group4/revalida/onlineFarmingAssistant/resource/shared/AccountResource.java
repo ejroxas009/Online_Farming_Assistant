@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ChangePassword;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.ProfileImage;
 import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -101,11 +102,11 @@ public AccountResource(AccountService accountService) {
 	@Path("/change-profileImg/{accountId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response changeProfileImage(Long id , String image) {
+	public Response changeProfileImage(@PathParam("accountId") Long id , ProfileImage image) {
 		accountService.changeProfileImage(id, image);
 		return Response.ok().build();
 	}
-	
+		
 	@PUT
 	@Path("/change-password/{accountId}")
 	@Produces({MediaType.APPLICATION_JSON})

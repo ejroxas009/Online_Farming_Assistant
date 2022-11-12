@@ -6,9 +6,11 @@ import java.util.Optional;
 
 import javax.ws.rs.NotFoundException;
 
+import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
+import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AdvertisementRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.CropReceivedRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class CropReceivedService {
 	@Autowired
 	private AdvertisementRepo adsRepo;
 	
+	@Autowired
+	private AccountRepo accountRepo;
+	
 	public List<CropReceived> getCropReceived(){
 		return cropReceivedRepo.findAll();
 	}
@@ -32,8 +37,12 @@ public class CropReceivedService {
 	}
 	
 	public CropReceived createCropReceived(CustomCropReceived customCropReceived) {
+		
+		
 		Advertisement ads = adsRepo.findById(customCropReceived.getAdvertisementId()).orElseThrow(NotFoundException ::new);
+		Account account = accountRepo.findById(customCropReceived.getAccountId()).orElseThrow(NotFoundException ::new);
 		CropReceived cropReceived = new CropReceived();
+		cropReceived.setAccount(account);
 		cropReceived.setAdvertisement(ads);
 		cropReceived.setReceivedTime(null);
 		cropReceived.setReceived(false);
