@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
+
 @Entity
 @Table(name = "crop_received_table")
 public class CropReceived {
@@ -17,6 +19,8 @@ public class CropReceived {
 	private Long cropReceivedId;
 	@OneToOne
 	private Advertisement advertisement;
+	@OneToOne
+	private Account account;
 	private LocalDateTime receivedTime;
 	private boolean isReceived;
 	
@@ -45,6 +49,12 @@ public class CropReceived {
 	}
 	public void setReceivedTime(LocalDateTime receivedTime) {
 		this.receivedTime = receivedTime;
+	}
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 	

@@ -8,8 +8,17 @@ public class CustomCropReceived {
 	
 	private Long advertisementId;
 	private boolean isReceived;
+	private Long accountId;
 	
 	
+	
+	
+	public Long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 	public Long getAdvertisementId() {
 		return advertisementId;
 	}
