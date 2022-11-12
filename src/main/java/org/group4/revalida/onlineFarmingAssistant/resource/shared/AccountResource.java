@@ -111,7 +111,7 @@ public AccountResource(AccountService accountService) {
 	@Path("/change-password/{accountId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Response changePassword(Long id , ChangePassword password) {
+	public Response changePassword(@PathParam("accountId") Long id , ChangePassword password) {
 		String result = accountService.changePassword(id, password);
 		if(result == "success") {
 			return Response.ok("Password is successfully changed").build();
