@@ -13,6 +13,7 @@ public class CustomAdvertisement {
 	private Long accountId;
 	private Long cropId;
 	private Long bidId;
+	private Long adsId;
 	private String adsDescription;
 	private double cropQuantity;
 	private double initialPrice;
