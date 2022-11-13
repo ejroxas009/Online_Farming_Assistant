@@ -25,6 +25,9 @@ public class BidService {
 	@Autowired 
 	private AccountRepo accountRepo;
 	
+	@Autowired
+	private AdvertisementRepo adsRepo;
+	
 	public List<Bid> getBid(){
 		return bidRepo.findAll(); 
 	}
@@ -35,10 +38,15 @@ public class BidService {
 	
 	public Bid createBid(CustomBid bid) {
 		Account account = accountRepo.findById(bid.getAccountId()).orElseThrow(NotFoundException::new);
+		Advertisement ads = adsRepo.findById(bid.getPostId()).orElseThrow(NotFoundException::new);
 		Bid addBid = new Bid();
 		addBid.setAccount(account);
+		addBid.setAdvertisement(ads);
 		addBid.setBidPrice(bid.getBidPrice());
 		addBid.setBidMsg(bid.getBidMsg());
+		addBid.setActive(true);
+		addBid.setApproved(false);
+		addBid.setPaid(false);
 		addBid.setBidDate(LocalDateTime.now());
 		return bidRepo.save(addBid);
 	}

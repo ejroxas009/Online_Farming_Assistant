@@ -3,14 +3,19 @@ package org.group4.revalida.onlineFarmingAssistant.model.farmer;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="bid_table")
@@ -23,6 +28,10 @@ public class Bid {
 	@OneToOne
 	private Account account;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
+	@JoinColumn(name = "adsId")
+	private Advertisement advertisement;
 	private double bidPrice;
 	private String bidMsg;
 	private LocalDateTime bidDate;
@@ -35,6 +44,14 @@ public class Bid {
 		
 	}
 	
+	public Advertisement getAdvertisement() {
+		return advertisement;
+	}
+
+	public void setAdvertisement(Advertisement advertisement) {
+		this.advertisement = advertisement;
+	}
+
 	public Long getBidId() {
 		return bidId;
 	}

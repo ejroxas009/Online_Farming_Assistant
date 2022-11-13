@@ -21,6 +21,8 @@ import org.group4.revalida.onlineFarmingAssistant.model.admin.Crop;
 import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "advertisement_table")
 public class Advertisement {
@@ -37,8 +39,10 @@ public class Advertisement {
 	private String cropImg;
 	private LocalDateTime postDate;
 	private boolean isActive;
-	@OneToMany(targetEntity = Bid.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "ads_fk", referencedColumnName = "postId")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy ="advertisement")
+	//@JoinColumn(name = "ads_fk", referencedColumnName = "postId")
+	
+	@JsonManagedReference
 	private List<Bid> bid;
 	
 	
