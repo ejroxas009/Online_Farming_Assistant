@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -57,6 +58,15 @@ public class FarmingTipsResource {
 	public Response editFarmingTips(FarmingTips fTips, @PathParam("farmingTipsId")Long id) {
 		fTipsService.editFarmingTips(fTips, id);
 		return Response.ok("Successfully Edited").build();
+	}
+	
+	@DELETE
+	@Path("/{farmingTipsId}")
+	@Produces
+	@Consumes
+	public Response deleteFarmingTips(FarmingTips fTips, @PathParam("farmingTipsId")Long id) {
+		fTipsService.deleteFarmingTips(id);
+		return Response.ok("Successfully Deleted").build();
 	}
 	
 }

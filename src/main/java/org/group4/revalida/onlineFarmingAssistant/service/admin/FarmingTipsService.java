@@ -31,10 +31,16 @@ public class FarmingTipsService {
 		return farmingTipsRepo.save(farmingtips);
 	}
 	
+	public void deleteFarmingTips (Long id) {
+	farmingTipsRepo.deleteById(id);
+	}
+	
 	public FarmingTips editFarmingTips(FarmingTips farmingtips, Long Id) {
 		FarmingTips ftipsInDb = farmingTipsRepo.findById(Id).orElseThrow(NotFoundException::new);
 		ftipsInDb.setFarmingTips(farmingtips.getFarmingTips());
-		
+		ftipsInDb.setFarmingTipsDesc(farmingtips.getFarmingTipsDesc());
+		ftipsInDb.setFarmingTipsImg(farmingtips.getFarmingTipsImg());
+		ftipsInDb.setFarmingTipsLink(farmingtips.getFarmingTipsLink());
 		return farmingTipsRepo.save(ftipsInDb);
 	}
 }
