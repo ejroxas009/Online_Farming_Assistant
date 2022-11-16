@@ -13,8 +13,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.group4.revalida.onlineFarmingAssistant.model.twilio.SmsRequest;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomAdvertisement;
+import org.group4.revalida.onlineFarmingAssistant.service.twilio.TwilioSmsSender;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,12 +24,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AdvertisementResource {
 
 	private final AdvertisementService adsService;
+	private final TwilioSmsSender twilioSmsSender;
 	
 	@Autowired
-	public AdvertisementResource(AdvertisementService adsService) {
+	public AdvertisementResource(AdvertisementService adsService, TwilioSmsSender twilioSmsSender) {
+		super();
 		this.adsService = adsService;
+		this.twilioSmsSender = twilioSmsSender;
 	}
-	
+
+//	@Autowired
+//	public AdvertisementResource(AdvertisementService adsService) {
+//		this.adsService = adsService;
+//	}
+//	
+//	
+//	
+//	
+//	public AdvertisementResource() {
+//		super();
+//	}
+
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getAds() {
@@ -78,5 +95,15 @@ public class AdvertisementResource {
 		adsService.toggleActive(id);
 		return Response.ok("Successfully toggled active").build();
 	}
-		
+	
+	@POST
+	@Path("/twilio")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response sendSms(String phoneNumber) {
+		twilioSmsSender.sendSms(phoneNumber);
+		return Response.ok("successfully sent a message").build();
+	}
+	
+	
 }
