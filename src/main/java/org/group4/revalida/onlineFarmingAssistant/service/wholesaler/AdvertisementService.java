@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
 
@@ -17,6 +18,8 @@ import org.group4.revalida.onlineFarmingAssistant.repo.admin.CropRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.farmer.BidRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AdvertisementRepo;
+import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
+import org.group4.revalida.onlineFarmingAssistant.service.twilio.TwilioSmsSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,12 @@ public class AdvertisementService {
 	@Autowired
 	CropRepo cropRepo;
 	
+	@Autowired
+	TwilioSmsSender twilioSmsSender;
+	
+	@Autowired
+	AccountService accountService;
+	
 	
 	
 	public List<Advertisement> getAdvertisement() {
@@ -49,6 +58,11 @@ public class AdvertisementService {
 	
 	public Advertisement createAdvertisement(CustomAdvertisement ads) {
 		Account account = accountRepo.findById(ads.getAccountId()).orElseThrow(NotFoundException::new);
+		List<Account> allAccount =  accountRepo.findAll();
+//		List<Account> farmerAccount = allAccount.stream()
+//				.filter(user -> user.getRole().equals("farmer"))
+//				.collect(Collectors.toList());
+		List<Account> listOfFarmers = accountService.getAllFarmers();
 		Advertisement newAds = new Advertisement();
 		Crop newCrop = cropRepo.findById(ads.getCropId()).orElseThrow(NotFoundException::new);
 		newAds.setAccount(account);
@@ -60,6 +74,10 @@ public class AdvertisementService {
 		//newAds.setPostDate(LocalDateTime.now());
 		newAds.setPostDate(LocalDateTime.now());
 		newAds.setActive(true);
+		
+		twilioSmsSender.sendSms("+639154290316");
+		
+		
 		return advertisementRepo.save(newAds);
 	}
 	

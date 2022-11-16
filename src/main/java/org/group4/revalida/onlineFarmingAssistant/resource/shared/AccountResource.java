@@ -120,4 +120,12 @@ public AccountResource(AccountService accountService) {
 		
 	}
 	
+	@GET
+	@Path("/farmer")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response getFarmer( ) {
+		List<Account> account = accountService.getAllFarmers();
+		return Response.ok(account).build();
+	}
+	
 }

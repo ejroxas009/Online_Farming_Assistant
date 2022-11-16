@@ -142,7 +142,12 @@ public class AccountService implements UserDetailsService{
 		}
 		
 		return "failed";
-		 
+	}
+	
+	public List<Account> getAllFarmers() {
+		List<Account> allAccount = accountRepo.findAll();
+		List<Account> getAllFarmers = allAccount.stream().filter(user-> user.getRole().equals("farmer")).collect(Collectors.toList());
+		return getAllFarmers;
 		
 	}
 }
