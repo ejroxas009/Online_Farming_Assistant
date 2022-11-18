@@ -27,7 +27,16 @@ public class Complaints {
 	private String complaintPost;
 	private String complaintImg;
 	private boolean isRead;
+	private boolean isResolved;
 	
+	public boolean isResolved() {
+		return isResolved;
+	}
+
+	public void setResolved(boolean isResolved) {
+		this.isResolved = isResolved;
+	}
+
 	public Complaints() {
 		
 	}
