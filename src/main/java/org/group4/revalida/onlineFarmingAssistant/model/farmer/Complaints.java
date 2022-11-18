@@ -41,13 +41,14 @@ public class Complaints {
 		
 	}
 	
-	public Complaints(Long complaintId, Account account, String complaintPost, String complaintImg, boolean isRead) {
+	public Complaints(Long complaintId, Account account, String complaintPost, String complaintImg, boolean isRead, boolean isResolved) {
 		super();
 		this.complaintId = complaintId;
 		this.account = account;
 		this.complaintPost = complaintPost;
 		this.complaintImg = complaintImg;
 		this.isRead = isRead;
+		this.isResolved = isResolved;
 	}
 
 	public Long getComplaintId() {

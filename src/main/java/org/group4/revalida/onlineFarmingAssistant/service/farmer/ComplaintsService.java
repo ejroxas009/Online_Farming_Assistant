@@ -38,6 +38,7 @@ public class ComplaintsService {
 		complt.setComplaintPost(complaints.getComplaintPost());
 		complt.setComplaintImg(complaints.getComplaintImg());
 		complt.setRead(false);
+		complt.setResolved(false);
 		return complaintsRepo.save(complt);
 	}
 	
