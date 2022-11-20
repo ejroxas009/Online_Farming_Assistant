@@ -46,11 +46,37 @@ public class BidService {
 		addBid.setBidMsg(bid.getBidMsg());
 		addBid.setActive(true);
 		addBid.setApproved(false);
+		addBid.setAccept(false);
 		addBid.setPaid(false);
 		addBid.setBidDate(LocalDateTime.now());
 		return bidRepo.save(addBid);
 	}
 	
 	//Toggle isApproved
+	
+	public Bid acceptBid(Long id) {
+		Bid bidInDb = bidRepo.findById(id).orElseThrow(NotFoundException::new);
+		bidInDb.setApproved(true);
+		return bidRepo.save(bidInDb);
+	}
+	
+	public void acceptBid2(Long adsId, Long bidId) {
+		Bid bidInDb = bidRepo.findById(bidId).orElseThrow(NotFoundException::new);
+		bidInDb.setApproved(true);
+		bidRepo.save(bidInDb);
+		Advertisement ads = adsRepo.findById(adsId).orElseThrow(NotFoundException::new);
+		List<Bid> bidList = ads.getBid();
+		bidList.stream()
+				.forEach(bid-> {
+					if(bid.isApproved() == true) {
+						bidList.stream().forEach(bid2->{
+							bid2.setAccept(true);
+							bidRepo.save(bid2);
+						});	
+					}
+
+				});
+		
+	}
 	
 }

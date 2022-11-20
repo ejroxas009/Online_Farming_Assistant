@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ChangePassword;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.GCashQR;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ProfileImage;
 import org.group4.revalida.onlineFarmingAssistant.service.shared.AccountService;
@@ -97,7 +98,7 @@ public AccountResource(AccountService accountService) {
 		accountService.toggleActive(id);
 		return Response.ok("Successfully changed isActive").build();
 	}
-	
+		
 	@PUT
 	@Path("/change-profileImg/{accountId}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -125,6 +126,15 @@ public AccountResource(AccountService accountService) {
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getFarmer( ) {
 		List<Account> account = accountService.getAllFarmers();
+		return Response.ok(account).build();
+	}
+	
+	@PUT
+	@Path("/change-gcash-qr/{accountId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response changeGCashQr(@PathParam("accountId") Long id , GCashQR image) {
+		Account account = accountService.uploadGCashQr(id, image);
 		return Response.ok(account).build();
 	}
 	
