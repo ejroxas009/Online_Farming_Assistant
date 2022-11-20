@@ -50,6 +50,7 @@ public class CropPaymentService {
 		cropPayment.setPaymentMode(customCropPayment.getPaymentMode());
 		cropPayment.setOrderIdRef(customCropPayment.getOrderIdRef());
 		cropPayment.setPaid(false);
+		cropPayment.setOrderIdRef(customCropPayment.getOrderIdRef());
 		return cropPaymentRepo.save(cropPayment);
 	}
 	

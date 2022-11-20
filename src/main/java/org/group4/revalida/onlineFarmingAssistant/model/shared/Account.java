@@ -32,8 +32,37 @@ public class Account {
 	private String email;
 	private String username;
 	private String password;
+	private String GCashQr;
+	private String bankName;
+	private String bankAccountNumber;
+	private String bankAccountName;
 	
 	
+	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getBankAccountNumber() {
+		return bankAccountNumber;
+	}
+	public void setBankAccountNumber(String bankAccountNumber) {
+		this.bankAccountNumber = bankAccountNumber;
+	}
+	public String getBankAccountName() {
+		return bankAccountName;
+	}
+	public void setBankAccountName(String bankAccountName) {
+		this.bankAccountName = bankAccountName;
+	}
+	public String getGCashQr() {
+		return GCashQr;
+	}
+	public void setGCashQr(String gCashQr) {
+		GCashQr = gCashQr;
+	}
 	public Long getAccountId() {
 		return accountId;
 	}

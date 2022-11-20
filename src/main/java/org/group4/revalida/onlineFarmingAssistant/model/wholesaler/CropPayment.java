@@ -22,6 +22,7 @@ public class CropPayment {
 	@OneToOne
 	private Advertisement advertisement;
 	private LocalDateTime paymentDate;
+	private Double amount;
 	private String paymentMode;
 	@OneToOne
 	private Account account;

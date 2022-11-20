@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -51,5 +52,25 @@ public class BidResource {
 	}
 	
 	//Toggle isApproved
+	
+	@PUT
+	@Path("/accept-bid/{bidId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response acceptBid(@PathParam("bidId") Long id) {
+		bidService.acceptBid(id);
+		return Response.ok("Bid accepted successfully").build();
+		
+	}
+	
+	
+	@PUT
+	@Path("/accept-bid2/{adsId}/{bidId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response acceptBid2(@PathParam("adsId") Long adsId, @PathParam("bidId") Long bidId) {
+		bidService.acceptBid2(adsId, bidId);
+		return Response.ok().build();
+	}
 	
 }

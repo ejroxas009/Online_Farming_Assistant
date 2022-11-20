@@ -14,6 +14,7 @@ import javax.ws.rs.NotFoundException;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ChangePassword;
+import org.group4.revalida.onlineFarmingAssistant.model.shared.GCashQR;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.LoginCredentials;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.ProfileImage;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
@@ -94,6 +95,9 @@ public class AccountService implements UserDetailsService{
 		accountInDb.setCountry(account.getCountry());
 		accountInDb.setPhoneNumber(account.getPhoneNumber());
 		accountInDb.setProfileImg(account.getProfileImg());
+		accountInDb.setBankAccountName(account.getBankAccountName());
+		accountInDb.setBankAccountNumber(account.getBankAccountNumber());
+		accountInDb.setBankName(account.getBankName());
 		
 		return accountRepo.save(accountInDb);
 	}
@@ -148,6 +152,13 @@ public class AccountService implements UserDetailsService{
 		List<Account> allAccount = accountRepo.findAll();
 		List<Account> getAllFarmers = allAccount.stream().filter(user-> user.getRole().equals("farmer")).collect(Collectors.toList());
 		return getAllFarmers;
+		
+	}
+	
+	public Account uploadGCashQr(Long id, GCashQR image) {
+		Account accountInDb = accountRepo.findById(id).orElseThrow(NotFoundException::new);
+		accountInDb.setGCashQr(image.getGCashQr());
+		return accountRepo.save(accountInDb);
 		
 	}
 }

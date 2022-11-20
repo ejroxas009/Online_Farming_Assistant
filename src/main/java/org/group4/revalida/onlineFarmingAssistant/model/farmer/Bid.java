@@ -38,12 +38,24 @@ public class Bid {
 	private boolean isActive;
 	private boolean isPaid;
 	private boolean isApproved;
+	private boolean isAccept;
 	private LocalDateTime dateApproved;
 	
 	public Bid() {
 		
 	}
+
 	
+	public boolean isAccept() {
+		return isAccept;
+	}
+
+
+	public void setAccept(boolean isAccept) {
+		this.isAccept = isAccept;
+	}
+
+
 	public Advertisement getAdvertisement() {
 		return advertisement;
 	}

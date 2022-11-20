@@ -29,13 +29,7 @@ public class Complaints {
 	private boolean isRead;
 	private boolean isResolved;
 	
-	public boolean isResolved() {
-		return isResolved;
-	}
-
-	public void setResolved(boolean isResolved) {
-		this.isResolved = isResolved;
-	}
+	
 
 	public Complaints() {
 		
@@ -91,6 +85,13 @@ public class Complaints {
 		this.isRead = isRead;
 	}
 	
+	public boolean isResolved() {
+		return isResolved;
+	}
+
+	public void setResolved(boolean isResolved) {
+		this.isResolved = isResolved;
+	} 
 	
 	
 }
