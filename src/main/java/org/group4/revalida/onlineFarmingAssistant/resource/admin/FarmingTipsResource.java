@@ -62,8 +62,8 @@ public class FarmingTipsResource {
 	
 	@DELETE
 	@Path("/{farmingTipsId}")
-	@Produces
-	@Consumes
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
 	public Response deleteFarmingTips(FarmingTips fTips, @PathParam("farmingTipsId")Long id) {
 		fTipsService.deleteFarmingTips(id);
 		return Response.ok("Successfully Deleted").build();

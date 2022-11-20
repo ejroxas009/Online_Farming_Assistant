@@ -14,7 +14,10 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
 	
+	private String courseName;
 	private String courseDescription;
+	private String courseLink;
+	
 	
 	//Course Schedule
 	private String startTime;
@@ -30,6 +33,14 @@ public class Course {
 		this.courseId = courseId;
 	}
 
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
 	public String getCourseDescription() {
 		return courseDescription;
 	}
@@ -37,7 +48,16 @@ public class Course {
 	public void setCourseDescription(String courseDescription) {
 		this.courseDescription = courseDescription;
 	}
+	
+	public String getCourseLink() {
+		return courseLink;
+	}
 
+	public void setCourseLink(String courseLink) {
+		this.courseLink = courseLink;
+	}
+
+	
 	public String getStartTime() {
 		return startTime;
 	}
