@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -56,5 +57,14 @@ public class CourseResource {
 	public Response editCourse(Course course, @PathParam("courseId") Long id) {
 		courseService.editCourse(course, id);
 		return Response.ok("Successfully Edited").build();
+	}
+	
+	@DELETE
+	@Path("/{courseId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response deleteCourse(Course course, @PathParam("courseId") Long id) {
+		courseService.deleteCourse(id);
+		return Response.ok("Successfully Deleted").build();
 	}
 }

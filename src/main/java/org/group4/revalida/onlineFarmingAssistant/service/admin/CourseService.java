@@ -31,6 +31,10 @@ public class CourseService {
 		return courseRepo.save(course);
 	}
 	
+	public void deleteCourse (Long id) {
+		courseRepo.deleteById(id);
+		}
+	
 	public Course editCourse(Course course, Long Id) {
 		Course courseInDb  = courseRepo.findById(Id).orElseThrow(NotFoundException::new);
 		courseInDb.setCourseDescription(course.getCourseDescription());
