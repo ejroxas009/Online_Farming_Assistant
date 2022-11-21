@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
@@ -23,9 +24,25 @@ public class CropReceived {
 	private Account account;
 	private LocalDateTime receivedTime;
 	private boolean isReceived;
+	@OneToOne
+	private Bid bid;
+	private String orderIdRef;
 	
 	
 	
+	
+	public String getOrderIdRef() {
+		return orderIdRef;
+	}
+	public void setOrderIdRef(String orderIdRef) {
+		this.orderIdRef = orderIdRef;
+	}
+	public Bid getBid() {
+		return bid;
+	}
+	public void setBid(Bid bid) {
+		this.bid = bid;
+	}
 	public Long getCropReceivedId() {
 		return cropReceivedId;
 	}
