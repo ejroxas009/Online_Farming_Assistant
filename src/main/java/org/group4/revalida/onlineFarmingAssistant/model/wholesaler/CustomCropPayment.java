@@ -24,6 +24,15 @@ public class CustomCropPayment {
 	private String orderIdRef;
 	private boolean isPaid;
 	//private String paymentDetails;
+	private Long bidId;
+	
+	
+	public Long getBidId() {
+		return bidId;
+	}
+	public void setBidId(Long bidId) {
+		this.bidId = bidId;
+	}
 	public Long getAdvertisementId() {
 		return advertisementId;
 	}

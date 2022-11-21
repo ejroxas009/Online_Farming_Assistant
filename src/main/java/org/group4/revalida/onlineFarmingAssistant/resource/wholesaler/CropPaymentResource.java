@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropPayment;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomChangePaymentMode;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropPayment;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomProofOfPayment;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.CropPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -70,6 +71,15 @@ public class CropPaymentResource {
 		service.receivePayment(id);
 		return Response.ok("Payment was received successfully").build();
 	}
+	
+	@PUT
+	@Path("/mark-as-paid/{cropPaymentId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response markAsPaid(@PathParam("cropPaymentId") Long id) {
+		service.markAsPaid(id);
+		return Response.ok("You marked your transaction as paid").build();
+	}
 	//Change Payment Mode                 
 	@PUT
 	@Path("/change-payment-mode/{cropPaymentId}")
@@ -79,4 +89,14 @@ public class CropPaymentResource {
 		service.changePaymentMode(changePaymentMode, id);
 		return Response.ok("Successfully changed the payment mode").build();
 	}
+	//---Send Proof of Payment
+	@PUT
+	@Path("/send-proof-of-payment/{cropPaymentId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response sendProofOfPayment(CustomProofOfPayment proof, @PathParam("cropPaymentId") Long id) {
+		service.sendProofOfPayment(proof, id);
+		return Response.ok().build();
+	}
+	
 }
