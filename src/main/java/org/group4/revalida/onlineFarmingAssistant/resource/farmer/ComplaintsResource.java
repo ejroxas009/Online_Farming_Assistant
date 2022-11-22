@@ -62,4 +62,14 @@ public class ComplaintsResource {
 		return Response.ok("Complaint Status: Read").build();
 	}
 	
+	//Toggle isResolved
+	@PUT
+	@Path("/complaint-solution/{complaintId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response complaintSolution(@PathParam("complaintId") Long id) {
+		complaintsService.complaintSolution(id);
+		return Response.ok("Complaint: Resolved").build();
+	}
+	
 }
