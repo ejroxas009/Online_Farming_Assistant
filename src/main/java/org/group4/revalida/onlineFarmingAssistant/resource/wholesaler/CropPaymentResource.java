@@ -70,6 +70,15 @@ public class CropPaymentResource {
 		service.receivePayment(id);
 		return Response.ok("Payment was received successfully").build();
 	}
+	
+	@PUT
+	@Path("/mark-as-paid/{cropPaymentId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response markAsPaid(@PathParam("cropPaymentId") Long id) {
+		service.markAsPaid(id);
+		return Response.ok("You marked your transaction as paid").build();
+	}
 	//Change Payment Mode                 
 	@PUT
 	@Path("/change-payment-mode/{cropPaymentId}")

@@ -8,8 +8,10 @@ import javax.ws.rs.NotFoundException;
 
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropPayment;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
+import org.group4.revalida.onlineFarmingAssistant.repo.farmer.BidRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AdvertisementRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.CropReceivedRepo;
@@ -55,6 +57,12 @@ public class CropReceivedService {
 		CropReceived cropInDb = cropReceivedRepo.findById(id).orElseThrow(NotFoundException::new);
 		cropInDb.setReceivedTime(LocalDateTime.now());
 		cropInDb.setReceived(true);
+		return cropReceivedRepo.save(cropInDb);
+	}
+	
+	public CropReceived sendProofOfPayment(CustomProofOfPayment proof, Long id) {
+		CropReceived cropInDb = cropReceivedRepo.findById(id).orElseThrow(NotFoundException::new);
+		cropInDb.setProofOfPayment(proof.getProofOfPayment());
 		return cropReceivedRepo.save(cropInDb);
 	}
 	

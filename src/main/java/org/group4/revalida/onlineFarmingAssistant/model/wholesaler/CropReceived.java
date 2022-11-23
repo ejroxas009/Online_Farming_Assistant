@@ -23,9 +23,25 @@ public class CropReceived {
 	private Account account;
 	private LocalDateTime receivedTime;
 	private boolean isReceived;
+	@OneToOne
+	private Bid bid;
+	private String orderIdRef;
 	
 	
 	
+	
+	public String getOrderIdRef() {
+		return orderIdRef;
+	}
+	public void setOrderIdRef(String orderIdRef) {
+		this.orderIdRef = orderIdRef;
+	}
+	public Bid getBid() {
+		return bid;
+	}
+	public void setBid(Bid bid) {
+		this.bid = bid;
+	}
 	public Long getCropReceivedId() {
 		return cropReceivedId;
 	}

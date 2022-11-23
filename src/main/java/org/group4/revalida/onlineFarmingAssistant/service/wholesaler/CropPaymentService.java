@@ -69,4 +69,16 @@ public class CropPaymentService {
 		return cropPaymentRepo.save(cropInDb);
 	}
 	
+	public CropPayment markAsPaid(Long id) {
+		CropPayment cropInDb = cropPaymentRepo.findById(id).orElseThrow(NotFoundException::new);
+		cropInDb.setPaymentDate(LocalDateTime.now());
+		cropInDb.setMarkAsPaid(true);
+		
+		return cropPaymentRepo.save(cropInDb);
+	}
+	
+	public CropPayment sendProofOfPayment(CustomProofOfPayment proof, Long id) {
+		CropPayment cropInDb = cropPaymentRepo.findById(id).orElseThrow(NotFoundException::new);
+		cropInDb.setProofOfPayment(proof.getProofOfPayment());
+		return cropPaymentRepo.save(cropInDb);
 	}

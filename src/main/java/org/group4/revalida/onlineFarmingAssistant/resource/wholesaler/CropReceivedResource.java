@@ -15,6 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomProofOfPayment;
+import org.group4.revalida.onlineFarmingAssistant.repo.farmer.BidRepo;
 import org.group4.revalida.onlineFarmingAssistant.service.wholesaler.CropReceivedService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +25,8 @@ public class CropReceivedResource {
 	
 	@Autowired
 	private CropReceivedService service;
+	
+	
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -54,6 +58,15 @@ public class CropReceivedResource {
 	public Response receiveCrop(@PathParam("cropReceivedId") Long id) {
 		service.receiveCrop(id);
 		return Response.ok("Crop Received Successfully").build();
+	}
+	
+	@PUT
+	@Path("/send-proof-of-payment/{cropReceivedId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response sendProofOfPayment(CustomProofOfPayment proof, @PathParam("cropReceivedId") Long id) {
+		service.sendProofOfPayment(proof, id);
+		return Response.ok().build();
 	}
 
 }
