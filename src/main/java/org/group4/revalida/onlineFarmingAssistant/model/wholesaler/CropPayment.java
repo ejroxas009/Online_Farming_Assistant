@@ -33,14 +33,30 @@ public class CropPayment {
 	private boolean isPaid;
 	//private String paymentDetails;
 	
+
+
 	private String proofOfPayment;
 	
 	private boolean markAsPaid;
+	private boolean markAsCOD;
+	
+	
+	
+
+	@OneToOne
+	private Bid bid;
+
+
 	
 	@OneToOne
 	private Bid bid;
 	
-	
+		public boolean isMarkAsCOD() {
+		return markAsCOD;
+	}
+	public void setMarkAsCOD(boolean markAsCOD) {
+		this.markAsCOD = markAsCOD;
+	}
 	
 	public Bid getBid() {
 		return bid;
