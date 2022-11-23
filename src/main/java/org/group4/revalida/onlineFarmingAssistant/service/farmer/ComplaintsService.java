@@ -16,21 +16,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ComplaintsService {
-	
+
 	@Autowired
 	ComplaintsRepo complaintsRepo;
-	
+
 	@Autowired
 	AccountRepo accountRepo;
-	
-	public List<Complaints> getComplaints(){
+
+	public List<Complaints> getComplaints() {
 		return complaintsRepo.findAll();
 	}
-	
-	public Optional<Complaints> getComplaintsById(Long id){
+
+	public Optional<Complaints> getComplaintsById(Long id) {
 		return complaintsRepo.findById(id);
 	}
-	
+
 	public Complaints postComplaints(CustomComplaints complaints) {
 		Account account = accountRepo.findById(complaints.getAccountId()).orElseThrow(NotFoundException::new);
 		Complaints complt = new Complaints();
@@ -41,11 +41,19 @@ public class ComplaintsService {
 		complt.setResolved(false);
 		return complaintsRepo.save(complt);
 	}
-	
-	//To toggle isRead
+
+	// To toggle isRead
 	public Complaints complaintStatus(Long id) {
 		Complaints isRead = complaintsRepo.findById(id).orElseThrow(NotFoundException::new);
 		isRead.setRead(true);
 		return complaintsRepo.save(isRead);
 	}
+
+	// To toggle isResolved
+	public Complaints complaintSolution(Long id) {
+		Complaints isResolved = complaintsRepo.findById(id).orElseThrow(NotFoundException::new);
+		isResolved.setResolved(true);
+		return complaintsRepo.save(isResolved);
+	}
+
 }

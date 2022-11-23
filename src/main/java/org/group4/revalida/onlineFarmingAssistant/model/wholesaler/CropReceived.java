@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity

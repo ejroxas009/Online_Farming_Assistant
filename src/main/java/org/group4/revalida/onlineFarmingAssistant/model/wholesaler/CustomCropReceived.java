@@ -9,10 +9,23 @@ public class CustomCropReceived {
 	private Long advertisementId;
 	private boolean isReceived;
 	private Long accountId;
+	private Long bidId;
+	private String orderIdRef;
 	
 	
 	
-	
+	public String getOrderIdRef() {
+		return orderIdRef;
+	}
+	public void setOrderIdRef(String orderIdRef) {
+		this.orderIdRef = orderIdRef;
+	}
+	public Long getBidId() {
+		return bidId;
+	}
+	public void setBidId(Long bidId) {
+		this.bidId = bidId;
+	}
 	public Long getAccountId() {
 		return accountId;
 	}

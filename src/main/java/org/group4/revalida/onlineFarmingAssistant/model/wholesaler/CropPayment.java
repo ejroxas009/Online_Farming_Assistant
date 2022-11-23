@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 
 @Entity
@@ -33,6 +34,7 @@ public class CropPayment {
 	//private String paymentDetails;
 	
 
+
 	private String proofOfPayment;
 	
 	private boolean markAsPaid;
@@ -40,17 +42,46 @@ public class CropPayment {
 	
 	
 	
-	public boolean isMarkAsCOD() {
+
+	@OneToOne
+	private Bid bid;
+
+
+	
+	@OneToOne
+	private Bid bid;
+	
+		public boolean isMarkAsCOD() {
 		return markAsCOD;
 	}
 	public void setMarkAsCOD(boolean markAsCOD) {
 		this.markAsCOD = markAsCOD;
 	}
-	@OneToOne
-	private Bid bid;
-
 	
-	
+	public Bid getBid() {
+		return bid;
+	}
+	public void setBid(Bid bid) {
+		this.bid = bid;
+	}
+	public boolean isMarkAsPaid() {
+		return markAsPaid;
+	}
+	public void setMarkAsPaid(boolean markAsPaid) {
+		this.markAsPaid = markAsPaid;
+	}
+	public Double getAmount() {
+		return amount;
+	}
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+	public String getProofOfPayment() {
+		return proofOfPayment;
+	}
+	public void setProofOfPayment(String proofOfPayment) {
+		this.proofOfPayment = proofOfPayment;
+	}
 	public Long getPaymentId() {
 		return paymentId;
 	}

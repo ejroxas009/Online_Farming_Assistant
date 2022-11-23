@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.ws.rs.NotFoundException;
 
+import org.group4.revalida.onlineFarmingAssistant.model.farmer.Bid;
 import org.group4.revalida.onlineFarmingAssistant.model.shared.Account;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropPayment;
@@ -30,6 +31,9 @@ public class CropReceivedService {
 	@Autowired
 	private AccountRepo accountRepo;
 	
+	@Autowired
+	private BidRepo bidRepo;
+	
 	public List<CropReceived> getCropReceived(){
 		return cropReceivedRepo.findAll();
 	}
@@ -43,9 +47,12 @@ public class CropReceivedService {
 		
 		Advertisement ads = adsRepo.findById(customCropReceived.getAdvertisementId()).orElseThrow(NotFoundException ::new);
 		Account account = accountRepo.findById(customCropReceived.getAccountId()).orElseThrow(NotFoundException ::new);
+		Bid bid = bidRepo.findById(customCropReceived.getBidId()).orElseThrow(NotFoundException ::new);
 		CropReceived cropReceived = new CropReceived();
 		cropReceived.setAccount(account);
+		cropReceived.setBid(bid);
 		cropReceived.setAdvertisement(ads);
+		cropReceived.setOrderIdRef(customCropReceived.getOrderIdRef());
 		cropReceived.setReceivedTime(null);
 		cropReceived.setReceived(false);
 		return cropReceivedRepo.save(cropReceived);
