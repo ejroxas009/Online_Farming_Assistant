@@ -60,13 +60,6 @@ public class CropReceivedResource {
 		return Response.ok("Crop Received Successfully").build();
 	}
 	
-	@PUT
-	@Path("/send-proof-of-payment/{cropReceivedId}")
-	@Produces({MediaType.APPLICATION_JSON})
-	@Consumes({MediaType.APPLICATION_JSON})
-	public Response sendProofOfPayment(CustomProofOfPayment proof, @PathParam("cropReceivedId") Long id) {
-		service.sendProofOfPayment(proof, id);
-		return Response.ok().build();
-	}
+	
 
 }
