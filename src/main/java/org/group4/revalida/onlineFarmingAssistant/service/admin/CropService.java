@@ -30,6 +30,10 @@ public class CropService {
 		return cropRepo.save(crop);
 	}
 	
+	public void deleteCrop (Long id) {
+		cropRepo.deleteById(id);
+	}
+	
 	public Crop editCrop(Crop crop,Long Id) {
 		Crop cropsInDb = cropRepo.findById(Id).orElseThrow(NotFoundException::new);
 		cropsInDb.setCropName(crop.getCropName());
