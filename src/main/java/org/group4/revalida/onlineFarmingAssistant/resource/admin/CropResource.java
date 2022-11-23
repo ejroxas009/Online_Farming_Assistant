@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -56,5 +57,14 @@ public class CropResource {
 	public Response editCrop(Crop crop, @PathParam("cropId") Long id) {
 		cropService.editCrop(crop, id);
 		return Response.ok("Successfully Edited").build();
+	}
+	
+	@DELETE
+	@Path("/{cropId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response deleteCrop(Crop crop, @PathParam("cropId") Long id) {
+		cropService.deleteCrop(id);
+		return Response.ok("Successfully Deleted").build();
 	}
 }
