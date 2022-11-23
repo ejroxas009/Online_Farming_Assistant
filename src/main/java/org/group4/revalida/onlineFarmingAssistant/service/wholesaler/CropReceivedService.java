@@ -12,6 +12,7 @@ import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.Advertisement
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropPayment;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CropReceived;
 import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomCropReceived;
+import org.group4.revalida.onlineFarmingAssistant.model.wholesaler.CustomProofOfPayment;
 import org.group4.revalida.onlineFarmingAssistant.repo.farmer.BidRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.shared.AccountRepo;
 import org.group4.revalida.onlineFarmingAssistant.repo.wholesaler.AdvertisementRepo;
@@ -67,10 +68,6 @@ public class CropReceivedService {
 		return cropReceivedRepo.save(cropInDb);
 	}
 	
-	public CropReceived sendProofOfPayment(CustomProofOfPayment proof, Long id) {
-		CropReceived cropInDb = cropReceivedRepo.findById(id).orElseThrow(NotFoundException::new);
-		cropInDb.setProofOfPayment(proof.getProofOfPayment());
-		return cropReceivedRepo.save(cropInDb);
-	}
+	
 	
 }

@@ -40,14 +40,6 @@ public class CropPayment {
 	private boolean markAsPaid;
 	private boolean markAsCOD;
 	
-	
-	
-
-	@OneToOne
-	private Bid bid;
-
-
-	
 	@OneToOne
 	private Bid bid;
 	
